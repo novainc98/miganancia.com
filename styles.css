@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #edecec;
+}
+
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 10dvh;
+    margin: 10px;
+
+    font-size: 1.4rem;
+    
+ 
+}
+
+
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    width: 90dvw;
+    margin: 0 auto 0 auto;
+
+    background: white;
+}
+
+.pie-pagina {
+    background-color: #2b2424;
+    padding: 1rem;
+}
