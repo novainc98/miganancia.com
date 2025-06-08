@@ -1,29 +1,58 @@
 // === Elementos DOM
 const calcularBtn = document.getElementById('btn-calcular');
+const elementosApuntador = document.querySelectorAll('.apuntador');
+
+
+// === Funciones
+function navegacionConEnter(listaDeElementos) {
+    elementosApuntador.forEach((elemento, index) => {
+
+        // 🎯 EVENTO: CUANDO SE PRESIONA UNA TECLA DENTRO DE CADA ELEMENTO
+        elemento.addEventListener('keydown', (evento) => {
+
+            // Si la tecla presionada es Enter...
+            if (evento.key === 'Enter') {
+                evento.preventDefault(); // Previene el comportamiento por defecto (como enviar formulario)
+
+                // Enfocamos el siguiente elemento si existe
+                const siguienteElemento = listaDeElementos[index + 1];
+                if (siguienteElemento) {
+                    siguienteElemento.focus();
+                }
+            }
+
+        });
+
+    });
+}
 
 
 // === Eventos
-calcularBtn.addEventListener("click", function(){
+calcularBtn.addEventListener("click", function () {
     const precio = parseFloat(document.getElementById("inp-precio").value);
     const cantidad = parseInt(document.getElementById("inp-cantidad").value)
     const precioVenta = parseFloat(document.getElementById("inp-precio-venta").value);
 
 
     let costoTotal = precio;
-    let costoUnitaro=  costoTotal/cantidad;
-    let ganaciaUnitaria = precioVenta -costoUnitaro;
-    let gananciaTotal = ganaciaUnitaria*cantidad;
+    let costoUnitaro = costoTotal / cantidad;
+    let gananciaUnitaria = precioVenta - costoUnitaro;
+    let gananciaTotal = gananciaUnitaria * cantidad;
 
 
-    document.getElementById("resultados").innerHTML = 
-    `
+    document.getElementById("resultados").innerHTML =
+        `
     Costo unitario: $${costoUnitaro} <br>
-    Ganancia Unitaria: $${ganaciaUnitaria} <br>
+    Ganancia Unitaria: $${gananciaUnitaria} <br>
     Ganancia Total $${gananciaTotal}
     `
+
+    console.log(costoTotal);
+    console.log(costoUnitaro);
+    console.log(gananciaUnitaria);
+    console.log(gananciaTotal);
 });
 
 
-
-
-
+// === funcionando jaja
+navegacionConEnter(elementosApuntador);
