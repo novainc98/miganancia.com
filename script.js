@@ -17,6 +17,7 @@ function navegacionConEnter(listaDeElementos) {
                     contadorEnter++;
                     if (contadorEnter === 1) {
                         elemento.click(); // simula hacer clic en el botón
+                        elemento.blur();
                         contadorEnter = 0; // reinicia el contador
                     }
                 } else {
