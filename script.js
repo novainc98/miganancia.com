@@ -5,27 +5,29 @@ const elementosApuntador = document.querySelectorAll('.apuntador');
 
 // === Funciones
 function navegacionConEnter(listaDeElementos) {
-    elementosApuntador.forEach((elemento, index) => {
+    let contadorEnter = 0;
 
-        // 🎯 EVENTO: CUANDO SE PRESIONA UNA TECLA DENTRO DE CADA ELEMENTO
+    listaDeElementos.forEach((elemento, index) => {
         elemento.addEventListener('keydown', (evento) => {
-
-            // Si la tecla presionada es Enter...
             if (evento.key === 'Enter') {
-                evento.preventDefault(); // Previene el comportamiento por defecto (como enviar formulario)
+                evento.preventDefault();
 
-                // Enfocamos el siguiente elemento si existe
-                const siguienteElemento = listaDeElementos[index + 1];
-                if (siguienteElemento) {
-                    siguienteElemento.focus();
+                // Si el actual es un botón
+                if (elemento.tagName === 'BUTTON') {
+                    contadorEnter++;
+                    if (contadorEnter === 1) {
+                        elemento.click(); // simula hacer clic en el botón
+                        contadorEnter = 0; // reinicia el contador
+                    }
+                } else {
+                    contadorEnter = 0; // reinicia si no es botón
+                    const siguiente = listaDeElementos[index + 1];
+                    if (siguiente) siguiente.focus();
                 }
             }
-
         });
-
     });
 }
-
 
 // === Eventos
 calcularBtn.addEventListener("click", function () {
@@ -47,10 +49,10 @@ calcularBtn.addEventListener("click", function () {
     Ganancia Total $${gananciaTotal}
     `
 
-    console.log(costoTotal);
-    console.log(costoUnitaro);
-    console.log(gananciaUnitaria);
-    console.log(gananciaTotal);
+    console.log({ costoTotal });
+    console.log({ costoUnitaro });
+    console.log({ gananciaUnitaria });
+    console.log({ gananciaTotal });
 });
 
 
