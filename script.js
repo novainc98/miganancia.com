@@ -1,4 +1,3 @@
-
 // === Elementos DOM
 const calcularBtn = document.getElementById('btn-calcular');
 const elementosApuntador = document.querySelectorAll('.apuntador');
@@ -33,11 +32,19 @@ function navegacionConEnter(listaDeElementos) {
 
 // === Eventos
 calcularBtn.addEventListener("click", function () {
-       const precio = parseFloat(document.getElementById("inp-precio").value);
+    const nombre = document.getElementById("inp-nombre").value;
+    const precio = parseFloat(document.getElementById("inp-precio").value);
     const cantidad = parseInt(document.getElementById("inp-cantidad").value)
     const precioVenta = parseFloat(document.getElementById("inp-precio-venta").value);
 
-    if(isNaN(precio) || isNaN(cantidad) || isNaN(precioVenta)){
+    const campos = document.querySelectorAll("input");
+    campos.forEach(campo => campo.classList.remove("error"));
+
+    if ( nombre === "" || isNaN(precio) || isNaN(cantidad) || isNaN(precioVenta)) {
+        if (nombre === "") document.getElementById("inp-nombre").classList.add("error");
+        if (isNaN(precio)) document.getElementById("inp-precio").classList.add("error");
+        if (isNaN(cantidad)) document.getElementById("inp-cantidad").classList.add("error");
+        if (isNaN(precioVenta)) document.getElementById("inp-precio-venta").classList.add("error");
         alert('Los campos deben estar completos');
         return;
     }
@@ -49,12 +56,14 @@ calcularBtn.addEventListener("click", function () {
 
 
     document.getElementById("resultados").innerHTML =
-        `
-    Costo unitario: $${Math.round(costoUnitaro*100)/100} <br>
-    Ganancia Unitaria: $${Math.round(gananciaUnitaria*100)/100} <br>
-    Ganancia Total $${Math.round(gananciaTotal*100)/100}
+    `
+    Nombre: ${nombre}<br>
+    Costo unitario: $${Math.round(costoUnitaro * 100) / 100} <br>
+    Ganancia Unitaria: $${Math.round(gananciaUnitaria * 100) / 100} <br>
+    Ganancia Total $${Math.round(gananciaTotal * 100) / 100}
     `
 
+    console.log({nombre});
     console.log({ costoTotal });
     console.log({ costoUnitaro });
     console.log({ gananciaUnitaria });
