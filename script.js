@@ -1,3 +1,4 @@
+
 // === Elementos DOM
 const calcularBtn = document.getElementById('btn-calcular');
 const elementosApuntador = document.querySelectorAll('.apuntador');
@@ -32,10 +33,14 @@ function navegacionConEnter(listaDeElementos) {
 
 // === Eventos
 calcularBtn.addEventListener("click", function () {
-    const precio = parseFloat(document.getElementById("inp-precio").value);
+       const precio = parseFloat(document.getElementById("inp-precio").value);
     const cantidad = parseInt(document.getElementById("inp-cantidad").value)
     const precioVenta = parseFloat(document.getElementById("inp-precio-venta").value);
 
+    if(isNaN(precio) || isNaN(cantidad) || isNaN(precioVenta)){
+        alert('Los campos deben estar completos');
+        return;
+    }
 
     let costoTotal = precio;
     let costoUnitaro = costoTotal / cantidad;
@@ -45,15 +50,16 @@ calcularBtn.addEventListener("click", function () {
 
     document.getElementById("resultados").innerHTML =
         `
-    Costo unitario: $${costoUnitaro} <br>
-    Ganancia Unitaria: $${gananciaUnitaria} <br>
-    Ganancia Total $${gananciaTotal}
+    Costo unitario: $${Math.round(costoUnitaro*100)/100} <br>
+    Ganancia Unitaria: $${Math.round(gananciaUnitaria*100)/100} <br>
+    Ganancia Total $${Math.round(gananciaTotal*100)/100}
     `
 
     console.log({ costoTotal });
     console.log({ costoUnitaro });
     console.log({ gananciaUnitaria });
     console.log({ gananciaTotal });
+
 });
 
 

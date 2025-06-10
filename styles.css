@@ -37,11 +37,45 @@ main {
     padding: 1rem;
     width: 90dvw;
     margin: 0 auto 0 auto;
-
+    
     background: white;
 }
 
+.campo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+main label {
+    display: inline-block;
+    width: 150px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+main input {
+    margin-bottom: 10px;
+}
+
 .pie-pagina {
-    background-color: #2b2424;
-    padding: 1rem;
+    /* Modelo de caja */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100dvw;
+    height: 12dvh;
+
+    /* Estilo Visual */
+    background: rgb(48, 45, 45);
+}
+
+.pie-pagina a{
+    /* Tipografia */
+    text-decoration: none;
+
+    /* colores y apariencia */
+    color: white;
+
 }
