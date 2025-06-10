@@ -78,11 +78,10 @@ main input {
 
     /* colores y apariencia */
     color: white;
-
 }
 
 .error{
-    border:2px solid red;
-    box-shadow: 1px 1px 4px black;
+    border: 1px solid red;
     border-radius: 5px;
+    box-shadow:  1px 1px 2px black;
 }
