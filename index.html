@@ -2,21 +2,25 @@
 <html lang="es">
 
 <head>
+    <meta charset="UTF-8">
     <title>Pestaña</title>
-    <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="contenedor">
-        <header>Calculador de Precios</header>
-        <main>
+    <header>
+        <h1>Mis ganancias.com</h1>
+        <nav>nav</nav>
+    </header>
+    <main class="contenedor">
+        <aside class="izquierda">
             <div class="campo">
                 <label for="inp-nombre">Nombre del Producto: </label>
                 <input type="text" id="inp-nombre" class="apuntador">
             </div>
 
-              
+
             <div class="campo2">
                 <label for="inp-costo-paquete">Costo de paquete: </label>
                 <input id="inp-costo-paquete" class="apuntador" type="number">
@@ -35,17 +39,17 @@
                 <input id="inp-cantidad" class="apuntador" type="number">
             </div>
 
-
             <button id="btn-calcular" class="apuntador">Calcular</button>
 
             <p id="resumen">Resumen</p>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        </main>
-        <footer class="pie-pagina">
-            <a href="https://github.com/novainc98" target="_blank" referrerpolicy="no-referrer'">🧑🏻‍💻 ➡ Perfil de
-                github </a>
-        </footer>
-    </div>
+        </aside>
+        <aside class="derecha">inventario</aside>
+    </main>
+    <footer class="pie-pagina">
+        <a href="https://github.com/novainc98" target="_blank" referrerpolicy="no-referrer'">🧑🏻‍💻 ➡ Perfil de
+            github </a>
+    </footer>
     <script src="script.js"></script>
 </body>
+
 </html>

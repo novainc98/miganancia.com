@@ -4,94 +4,124 @@
     box-sizing: border-box;
 }
 
+/* === body === */
 body{
-    background: #edecec;
+     background-color: #edecec;
 }
 
-
-header{
+/* === header === */
+header {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    height: 10dvh;
-    margin: 10px;
-
-    font-size: 1.4rem;
-    
- 
+    width: 100dvw;
+    height: 15dvh;
 }
 
-
-
-.contenedor {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+header h1 {
+    height: 60%;
+    width: 100%;
+    background-color: #edecec;
+    text-align: center;
+    padding: 0.5rem 0;
 }
 
+header nav {
+    height: 40%;
+    width: 100%;
+    background-color:#edecec;
+
+    text-align: center;
+    border:1px dotted black;
+}
+
+/* === Main === */
 main {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
-    width: 90dvw;
-    margin: 0 auto 0 auto;
-    
-    background: white;
-}
-
-.campo {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    flex-direction: row;
+   
+    width: 90dvw;
+    margin: 0 auto;
+    height: 75dvh;
 }
 
+/* === Main aside.izquierda === */
+aside.izquierda {
+    background-color: white;
+    width: 65%;
+    height: 100%;
+    overflow-y: auto;
 
-main label {
+}
+
+main aside.izquierda .campo label {
     display: inline-block;
     width: 200px;
     text-align: right;
     margin-right: 10px;
 }
 
-.campo2 label {
+main aside.izquierda .campo2 label {
     display: inline-block;
     text-align: right;
     margin-right: 6px;
 }
 
-main input {
+main aside.izquierda .campo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+main aside.izquierda .campo input {
     margin-bottom: 10px;
     padding: 2px 4px;
 }
 
-.campo2 {
+main aside.izquierda .campo2 {
     display: flex;
     align-items: center;
     gap: 4px;
     margin-bottom: 10px;
 
 }
-
-.campo2 input[type="number"] {
+main aside.izquierda .campo2 input[type="number"] {
     width: 55px;
 }
 
-.pie-pagina {
-    /* Modelo de caja */
+main aside.izquierda .error {
+    border: 2px solid red;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px black;
+}
+
+/* === main aside.derecha === */
+aside.derecha {
+    background-color: white;
+    width: 35%;
+    height: 100%;
+
+    border: 1px dotted black;
+    text-align: center;
+}
+
+/* === footer === */
+footer.pie-pagina {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100dvw;
-    height: 12dvh;
 
-    /* Estilo Visual */
-    background: rgb(48, 45, 45);
+    width: 100dvw;
+    height: 10dvh;
+
+    background-color: rgb(48, 45, 45); 
 }
 
-.pie-pagina a{
+
+footer.pie-pagina a {
     /* Tipografia */
     text-decoration: none;
 
@@ -99,8 +129,6 @@ main input {
     color: white;
 }
 
-.error{
-    border: 2px solid red;
-    border-radius: 5px;
-    box-shadow:  1px 1px 4px black;
-}
+
+
+

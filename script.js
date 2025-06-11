@@ -1,14 +1,14 @@
 // === Elementos DOM
 const calcularBtn = document.getElementById('btn-calcular');
-// const elementosApuntador = document.querySelectorAll('.apuntador');
-const elementosApuntador = [
-    document.getElementById("inp-nombre"),
-    document.getElementById("inp-pzas"),
-    document.getElementById("inp-costo-paquete"),
-    document.getElementById("inp-precio-venta"),
-    document.getElementById("inp-cantidad"),
-    document.getElementById("btn-calcular")
-];
+const elementosApuntador = document.querySelectorAll('.apuntador');
+// const elementosApuntador = [
+//     document.getElementById("inp-nombre"),
+//     document.getElementById("inp-pzas"),
+//     document.getElementById("inp-costo-paquete"),
+//     document.getElementById("inp-precio-venta"),
+//     document.getElementById("inp-cantidad"),
+//     document.getElementById("btn-calcular")
+// ];
 
 
 // === Funciones
