@@ -34,21 +34,22 @@ function cadenaVacio(cadena) {
     return cadena.length < 4 || !isNaN(cadena);
 }
 
-function noEsNumero (numero){
+function noEsNumero(numero) {
     return isNaN(numero);
 }
 
 // === Eventos
 calcularBtn.addEventListener("click", function () {
     const nombreProducto = document.getElementById("inp-nombre").value;
-    const precio = parseFloat(document.getElementById("inp-precio").value);
+    const costoPaquete = parseFloat(document.getElementById("inp-costo-paquete").value);
+    const pzas = parseFloat(document.getElementById("inp-pzas").value);
     const cantidad = parseInt(document.getElementById("inp-cantidad").value)
     const precioVenta = parseFloat(document.getElementById("inp-precio-venta").value);
 
     const entradas = document.querySelectorAll("input");
     entradas.forEach(entrada => entrada.classList.remove("error"));
 
-    if (cadenaVacio(nombreProducto) || isNaN(precio) || isNaN(cantidad) || isNaN(precioVenta)) {
+    if (cadenaVacio(nombreProducto) || isNaN(costoPaquete) || isNaN(pzas) || isNaN(cantidad) || isNaN(precioVenta)) {
         if (cadenaVacio(nombreProducto)) {
             const inputNombreProducto = document.getElementById("inp-nombre");
             inputNombreProducto.classList.add("error");
@@ -56,50 +57,69 @@ calcularBtn.addEventListener("click", function () {
             inputNombreProducto.placeholder = "..."
         }
 
-        if(noEsNumero(precio)){
-            const inputPrecio = document.getElementById("inp-precio");
-            inputPrecio.classList.add("error");
-            inputPrecio.value = "";
-            inputPrecio.placeholder = "..."
-        }
-
-         if(noEsNumero(cantidad)){
+        if (noEsNumero(cantidad)) {
             const inputPrecio = document.getElementById("inp-cantidad");
             inputPrecio.classList.add("error");
             inputPrecio.value = "";
             inputPrecio.placeholder = "..."
         }
 
-          if(noEsNumero(precioVenta)){
-            const inputPrecio = document.getElementById("inp-precio-venta");
-            inputPrecio.classList.add("error");
-            inputPrecio.value = "";
-            inputPrecio.placeholder = "..."
+        if (noEsNumero(costoPaquete)) {
+            const costoPaquete = document.getElementById("inp-costo-paquete");
+            costoPaquete.classList.add("error");
+            costoPaquete.value = "";
+            costoPaquete.placeholder = "..."
+        }
+
+        if (noEsNumero(pzas)) {
+            const pzas = document.getElementById("inp-pzas");
+            pzas.classList.add("error");
+            pzas.value = "";
+            pzas.placeholder = "..."
+        }
+
+        if (noEsNumero(precioVenta)) {
+            const precioVenta = document.getElementById("inp-precio-venta");
+            precioVenta.classList.add("error");
+            precioVenta.value = "";
+            precioVenta.placeholder = "..."
         }
 
         alert("Eror ingresa la informaicón correcta")
         return;
     }
 
-    let costoTotal = precio;
-    let costoUnitaro = costoTotal / cantidad;
+    let costoUnitaro = costoPaquete / pzas;
     let gananciaUnitaria = precioVenta - costoUnitaro;
-    let gananciaTotal = gananciaUnitaria * cantidad;
+    let inversion = cantidad * costoUnitaro;
+    let plusvalia = cantidad * gananciaUnitaria;
+    let total = inversion + plusvalia;
+
+
 
 
     document.getElementById("resultados").innerHTML =
         `
-    Nombre del producto: ${nombreProducto} <br>     
+    === Resumen ===
+    Nombre del producto: ${nombreProducto} <br> 
+    Inversión: $${Math.round(inversion * 100) / 100}<br>
+    <strong>Plusvalía: $${Math.round(plusvalia * 100) / 100}</strong><br>
+     Total: $${Math.round(total * 100) / 100}<br><br>
+
+    
     Costo unitario: $${Math.round(costoUnitaro * 100) / 100} <br>
-    Ganancia Unitaria: $${Math.round(gananciaUnitaria * 100) / 100} <br>
-    Ganancia Total $${Math.round(gananciaTotal * 100) / 100}
+      Ganancia Unitaria: $${Math.round(gananciaUnitaria * 100) / 100} <br>
+    Costo Paquete: $${Math.round(costoPaquete * 100) / 100}<br><br>
+  
+    
+   
     `
-/* 
-    console.log({nombreProducto});
-    console.log({ costoTotal });
-    console.log({ costoUnitaro });
-    console.log({ gananciaUnitaria });
-    console.log({ gananciaTotal }); */
+    /* 
+        console.log({nombreProducto});
+        console.log({ costoTotal });
+        console.log({ costoUnitaro });
+        console.log({ gananciaUnitaria });
+        console.log({ gananciaTotal }); */
 
 });
 
