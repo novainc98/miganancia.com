@@ -40,26 +40,11 @@ function noEsNumero (numero){
 
 // === Eventos
 calcularBtn.addEventListener("click", function () {
-<<<<<<< Updated upstream
-    const nombre = document.getElementById("inp-nombre").value;
-=======
     const nombreProducto = document.getElementById("inp-nombre").value;
->>>>>>> Stashed changes
     const precio = parseFloat(document.getElementById("inp-precio").value);
     const cantidad = parseInt(document.getElementById("inp-cantidad").value)
     const precioVenta = parseFloat(document.getElementById("inp-precio-venta").value);
 
-<<<<<<< Updated upstream
-    const campos = document.querySelectorAll("input");
-    campos.forEach(campo => campo.classList.remove("error"));
-
-    if ( nombre === "" || isNaN(precio) || isNaN(cantidad) || isNaN(precioVenta)) {
-        if (nombre === "") document.getElementById("inp-nombre").classList.add("error");
-        if (isNaN(precio)) document.getElementById("inp-precio").classList.add("error");
-        if (isNaN(cantidad)) document.getElementById("inp-cantidad").classList.add("error");
-        if (isNaN(precioVenta)) document.getElementById("inp-precio-venta").classList.add("error");
-        alert('Los campos deben estar completos');
-=======
     const entradas = document.querySelectorAll("input");
     entradas.forEach(entrada => entrada.classList.remove("error"));
 
@@ -93,7 +78,6 @@ calcularBtn.addEventListener("click", function () {
         }
 
         alert("Eror ingresa la informaicón correcta")
->>>>>>> Stashed changes
         return;
     }
 
@@ -104,27 +88,18 @@ calcularBtn.addEventListener("click", function () {
 
 
     document.getElementById("resultados").innerHTML =
-<<<<<<< Updated upstream
-    `
-    Nombre: ${nombre}<br>
-=======
         `
     Nombre del producto: ${nombreProducto} <br>     
->>>>>>> Stashed changes
     Costo unitario: $${Math.round(costoUnitaro * 100) / 100} <br>
     Ganancia Unitaria: $${Math.round(gananciaUnitaria * 100) / 100} <br>
     Ganancia Total $${Math.round(gananciaTotal * 100) / 100}
     `
-
-<<<<<<< Updated upstream
-    console.log({nombre});
-=======
+/* 
     console.log({nombreProducto});
->>>>>>> Stashed changes
     console.log({ costoTotal });
     console.log({ costoUnitaro });
     console.log({ gananciaUnitaria });
-    console.log({ gananciaTotal });
+    console.log({ gananciaTotal }); */
 
 });
 
