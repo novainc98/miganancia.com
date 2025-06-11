@@ -95,13 +95,20 @@ calcularBtn.addEventListener("click", function () {
     let plusvalia = cantidad * gananciaUnitaria;
     let total = inversion + plusvalia;
 
+    let paquetes, pzas_sueltas;
 
+    // cantidad = 28
+    //Calcula los paquetes
+    let enteros = Math.floor(cantidad / pzas); //2
+    paquetes = enteros;
+    // calcula pzas sueltas
+    pzas_sueltas = cantidad % pzas;
 
-
-    document.getElementById("resultados").innerHTML =
+    document.getElementById("resumen").innerHTML =
         `
-    === Resumen ===
-    Nombre del producto: ${nombreProducto} <br> 
+       === Resumen === <br>
+    Nombre del producto: ${nombreProducto} <br>
+     Inventario: ${cantidad} <br><br>
     Inversión: $${Math.round(inversion * 100) / 100}<br>
     <strong>Plusvalía: $${Math.round(plusvalia * 100) / 100}</strong><br>
      Total: $${Math.round(total * 100) / 100}<br><br>
@@ -112,6 +119,14 @@ calcularBtn.addEventListener("click", function () {
     Costo Paquete: $${Math.round(costoPaquete * 100) / 100}<br><br>
   
     
+    
+          Paquetes: ${paquetes} <br>
+     Pzas: ${pzas_sueltas} <br>
+  
+       
+       
+        
+
    
     `
     /* 
