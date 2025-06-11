@@ -1,6 +1,14 @@
 // === Elementos DOM
 const calcularBtn = document.getElementById('btn-calcular');
-const elementosApuntador = document.querySelectorAll('.apuntador');
+// const elementosApuntador = document.querySelectorAll('.apuntador');
+const elementosApuntador = [
+    document.getElementById("inp-nombre"),
+    document.getElementById("inp-pzas"),
+    document.getElementById("inp-costo-paquete"),
+    document.getElementById("inp-precio-venta"),
+    document.getElementById("inp-cantidad"),
+    document.getElementById("btn-calcular")
+];
 
 
 // === Funciones
@@ -97,9 +105,7 @@ calcularBtn.addEventListener("click", function () {
 
     let paquetes, pzas_sueltas;
 
-    // cantidad = 28
-    //Calcula los paquetes
-    let enteros = Math.floor(cantidad / pzas); //2
+    let enteros = Math.floor(cantidad / pzas); 
     paquetes = enteros;
     // calcula pzas sueltas
     pzas_sueltas = cantidad % pzas;
@@ -109,35 +115,19 @@ calcularBtn.addEventListener("click", function () {
        === Resumen === <br>
     Nombre del producto: ${nombreProducto} <br>
      Inventario: ${cantidad} <br><br>
+
     Inversión: $${Math.round(inversion * 100) / 100}<br>
     <strong>Plusvalía: $${Math.round(plusvalia * 100) / 100}</strong><br>
      Total: $${Math.round(total * 100) / 100}<br><br>
 
-    
     Costo unitario: $${Math.round(costoUnitaro * 100) / 100} <br>
       Ganancia Unitaria: $${Math.round(gananciaUnitaria * 100) / 100} <br>
     Costo Paquete: $${Math.round(costoPaquete * 100) / 100}<br><br>
   
-    
-    
           Paquetes: ${paquetes} <br>
      Pzas: ${pzas_sueltas} <br>
-  
-       
-       
-        
-
-   
     `
-    /* 
-        console.log({nombreProducto});
-        console.log({ costoTotal });
-        console.log({ costoUnitaro });
-        console.log({ gananciaUnitaria });
-        console.log({ gananciaTotal }); */
-
 });
-
 
 // === funcionando jaja
 navegacionConEnter(elementosApuntador);
