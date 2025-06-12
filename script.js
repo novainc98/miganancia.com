@@ -47,7 +47,10 @@ function noEsNumero(numero) {
 }
 
 function guardarProducto(nombreProducto, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, costoPaquete, paquetes, pzas_sueltas) {
-    const contador = localStorage.length + 1;
+    // Obtenemos el objeto de productos o un array de objetos (el inventario completo)
+    let productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+    //Creamos el objeto
     const producto = {
         nombreProducto: nombreProducto,
         cantidad: cantidad,
@@ -61,7 +64,11 @@ function guardarProducto(nombreProducto, cantidad, inversion, plusvalia, total, 
         pzas_sueltas:pzas_sueltas
     };
 
-    localStorage.setItem("producto" + contador, JSON.stringify(producto))
+    //Guardamos el objeto en el array
+    productos.push(producto);
+
+
+    localStorage.setItem("productos", JSON.stringify(productos))
 }
 
 // === Eventos
