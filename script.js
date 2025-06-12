@@ -1,14 +1,14 @@
 // === Elementos DOM
 const calcularBtn = document.getElementById('btn-calcular');
 const elementosApuntador = document.querySelectorAll('.apuntador');
-// const elementosApuntador = [
-//     document.getElementById("inp-nombre"),
-//     document.getElementById("inp-pzas"),
-//     document.getElementById("inp-costo-paquete"),
-//     document.getElementById("inp-precio-venta"),
-//     document.getElementById("inp-cantidad"),
-//     document.getElementById("btn-calcular")
-// ];
+/* const elementosApuntador = [
+    document.getElementById("inp-nombre"),
+    document.getElementById("inp-pzas"),
+    document.getElementById("inp-costo-paquete"),
+    document.getElementById("inp-precio-venta"),
+    document.getElementById("inp-cantidad"),
+    document.getElementById("btn-calcular")
+]; */
 
 
 // === Funciones
@@ -43,7 +43,7 @@ function cadenaVacio(cadena) {
 }
 
 function noEsNumero(numero) {
-    return isNaN(numero);
+    return isNaN(numero) || numero<1;
 }
 
 // === Eventos
@@ -57,7 +57,7 @@ calcularBtn.addEventListener("click", function () {
     const entradas = document.querySelectorAll("input");
     entradas.forEach(entrada => entrada.classList.remove("error"));
 
-    if (cadenaVacio(nombreProducto) || isNaN(costoPaquete) || isNaN(pzas) || isNaN(cantidad) || isNaN(precioVenta)) {
+    if (cadenaVacio(nombreProducto) || noEsNumero(costoPaquete) || noEsNumero(pzas) || noEsNumero(cantidad) || noEsNumero(precioVenta)) {
         if (cadenaVacio(nombreProducto)) {
             const inputNombreProducto = document.getElementById("inp-nombre");
             inputNombreProducto.classList.add("error");
