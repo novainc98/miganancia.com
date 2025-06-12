@@ -43,7 +43,25 @@ function cadenaVacio(cadena) {
 }
 
 function noEsNumero(numero) {
-    return isNaN(numero) || numero<1;
+    return isNaN(numero) || numero < 1;
+}
+
+function guardarProducto(nombreProducto, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, costoPaquete, paquetes, pzas_sueltas) {
+    const contador = localStorage.length + 1;
+    const producto = {
+        nombreProducto: nombreProducto,
+        cantidad: cantidad,
+        inversion: inversion,
+        plusvalia: plusvalia,
+        total: total,
+        costoUnitaro:costoUnitaro,
+        gananciaUnitaria:gananciaUnitaria,
+        costoPaquete:costoPaquete,
+        paquetes:paquetes,
+        pzas_sueltas:pzas_sueltas
+    };
+
+    localStorage.setItem("producto" + contador, JSON.stringify(producto))
 }
 
 // === Eventos
@@ -105,10 +123,12 @@ calcularBtn.addEventListener("click", function () {
 
     let paquetes, pzas_sueltas;
 
-    let enteros = Math.floor(cantidad / pzas); 
+    let enteros = Math.floor(cantidad / pzas);
     paquetes = enteros;
     // calcula pzas sueltas
     pzas_sueltas = cantidad % pzas;
+
+    guardarProducto(nombreProducto, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, costoPaquete, paquetes, pzas_sueltas);
 
     document.getElementById("resumen").innerHTML =
         `
