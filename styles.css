@@ -49,6 +49,10 @@ main {
 
 /* === Main aside.izquierda === */
 aside.izquierda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     background-color: white;
     width: 65%;
     height: 100%;
@@ -56,40 +60,7 @@ aside.izquierda {
 
 }
 
-main aside.izquierda .campo label {
-    display: inline-block;
-    width: 200px;
-    text-align: right;
-    margin-right: 10px;
-}
 
-main aside.izquierda .campo2 label {
-    display: inline-block;
-    text-align: right;
-    margin-right: 6px;
-}
-
-main aside.izquierda .campo {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-main aside.izquierda .campo input {
-    margin-bottom: 10px;
-    padding: 2px 4px;
-}
-
-main aside.izquierda .campo2 {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-bottom: 10px;
-
-}
-main aside.izquierda .campo2 input[type="number"] {
-    width: 55px;
-}
 
 main aside.izquierda .error {
     border: 2px solid red;
