@@ -5,8 +5,8 @@
 }
 
 /* === body === */
-body{
-     background-color: #edecec;
+body {
+    background-color: #edecec;
 }
 
 /* === header === */
@@ -21,27 +21,35 @@ header {
 }
 
 header h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     height: 60%;
     width: 100%;
     background-color: #edecec;
-    text-align: center;
-    padding: 0.5rem 0;
 }
 
 header nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     height: 40%;
     width: 100%;
-    background-color:#edecec;
+    background-color: #edecec;
 
     text-align: center;
-    border:1px dotted black;
+    border: 1px dotted black;
 }
 
 /* === Main === */
 main {
     display: flex;
     flex-direction: row;
-   
+
     width: 90dvw;
     margin: 0 auto;
     height: 75dvh;
@@ -88,7 +96,7 @@ footer.pie-pagina {
     width: 100dvw;
     height: 10dvh;
 
-    background-color: rgb(48, 45, 45); 
+    background-color: rgb(48, 45, 45);
 }
 
 
@@ -99,7 +107,3 @@ footer.pie-pagina a {
     /* colores y apariencia */
     color: white;
 }
-
-
-
-
