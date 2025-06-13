@@ -69,6 +69,13 @@ aside.izquierda {
 }
 
 
+main aside.izquierda .campo3{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
 
 main aside.izquierda .error {
     border: 2px solid red;
@@ -77,13 +84,37 @@ main aside.izquierda .error {
 }
 
 /* === main aside.derecha === */
-aside.derecha {
+main aside.derecha {
     background-color: white;
     width: 35%;
     height: 100%;
 
     border: 1px dotted black;
     text-align: center;
+}
+
+main aside.derecha div#contenedor-lista-productos{
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+
+    width: 70%;
+    text-align: left;
+    padding-left: 1rem;
+
+}
+
+main aside.derecha div.producto{
+    margin-top: 0.5rem;
+    border: 2px solid greenyellow;
+}
+main aside.derecha div.producto p{
+    cursor: pointer;
+}
+
+main aside.derecha div.producto p:hover{
+    cursor: pointer;
+    background-color: cadetblue;
 }
 
 /* === footer === */
