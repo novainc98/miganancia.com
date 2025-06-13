@@ -6,10 +6,12 @@ const elementosApuntador = document.querySelectorAll('.apuntador');
 const btnCalcular = document.getElementById('btn-calcular');
 const btnGuardar = document.getElementById('btn-guardar');
 const btnModificar = document.getElementById("btn-modificar");
+const btnEliminar = document.getElementById("btn-eliminar");
 
 // Estado es los botones inical deshabilitado
 btnGuardar.disabled = true;
 btnModificar.disabled = true;
+btnEliminar.disabled = true;
 
 /* const elementosApuntador = [
     document.getElementById("inp-nombre"),
@@ -140,6 +142,7 @@ function rellenarFormulario(producto) {
 
     btnCalcular.disabled = true;
     btnModificar.disabled= false;
+    btnEliminar.disabled=false;
 }
 
 
