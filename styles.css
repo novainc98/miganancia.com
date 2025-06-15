@@ -117,6 +117,9 @@ main aside.derecha div.producto p:hover{
     background-color: cadetblue;
 }
 
+.seleccionado{
+    background-color: rgb(73, 165, 168);
+}
 /* === footer === */
 footer.pie-pagina {
     display: flex;

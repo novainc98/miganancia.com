@@ -72,7 +72,7 @@ function crearProducto(nombreProducto, pzas, cantidad, inversion, plusvalia, tot
     //Creamos el objeto
     product = {
         nombreProducto: nombreProducto,
-        pzas:pzas,
+        pzas: pzas,
         cantidad: cantidad,
         inversion: inversion,
         plusvalia: plusvalia,
@@ -85,8 +85,8 @@ function crearProducto(nombreProducto, pzas, cantidad, inversion, plusvalia, tot
     };
 }
 
-function mostrarResumen(producto){
-        document.getElementById("resumen").innerHTML =
+function mostrarResumen(producto) {
+    document.getElementById("resumen").innerHTML =
         `
        === Resumen === <br>
     Nombre del producto: ${producto.nombreProducto} <br>
@@ -106,7 +106,7 @@ function mostrarResumen(producto){
 
 }
 
-function limpiarResumen(){
+function limpiarResumen() {
     document.getElementById("resumen").innerHTML = "";
 }
 
@@ -120,10 +120,21 @@ function cargarProductos() {
         let div = document.createElement("div");
         div.className = "producto";
         div.dataset.id = index;
-        div.innerHTML = `
-            <p>${++index}. ${producto.nombreProducto}, <strong>${producto.cantidad} pzas</strong>, Plusvalia ($): ${producto.plusvalia} </p> 
+
+        let p = document.createElement("p");
+        p.innerHTML = `
+            ${++index}. ${producto.nombreProducto}, <strong>${producto.cantidad} pzas</strong>, Plusvalia ($): ${producto.plusvalia}  
         `;
+        div.appendChild(p);
+
         div.addEventListener("click", () => {
+
+            // Quitar la clase 'seleccionado a todos los productos' de todos los productos
+            document.querySelectorAll(".producto p").forEach(p => p.classList.remove("seleccionado"));
+
+            // Agregar 's' solo al que se hizo clic
+            p.classList.add("seleccionado");
+
             rellenarFormulario(producto);
         });
         contenedorListaProductos.appendChild(div);
@@ -141,8 +152,8 @@ function rellenarFormulario(producto) {
     mostrarResumen(producto);
 
     btnCalcular.disabled = true;
-    btnModificar.disabled= false;
-    btnEliminar.disabled=false;
+    btnModificar.disabled = false;
+    btnEliminar.disabled = false;
 }
 
 
@@ -213,7 +224,7 @@ btnCalcular.addEventListener("click", function () {
     // calcula pzas sueltas
     pzas_sueltas = cantidad % pzas;
 
-    crearProducto(nombreProducto,pzas,cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, costoPaquete, paquetes, pzas_sueltas);
+    crearProducto(nombreProducto, pzas, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, costoPaquete, paquetes, pzas_sueltas);
     mostrarResumen(product);
 
     btnGuardar.disabled = false;
@@ -221,7 +232,7 @@ btnCalcular.addEventListener("click", function () {
 
 btnGuardar.addEventListener("click", function () {
     guardarProducto();
-     cargarProductos();
+    cargarProductos();
     const inputs = document.querySelectorAll("input");
 
     inputs.forEach(input => {
