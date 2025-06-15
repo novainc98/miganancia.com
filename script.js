@@ -92,7 +92,7 @@ function mostrarResumen(producto) {
     Nombre del producto: ${producto.nombreProducto} <br>
      Inventario: ${producto.cantidad} <br><br>
 
-    Inversión: $${Math.round(producto.inversion * 100) / 100}<br>
+    <strong> Inversión: $${Math.round(producto.inversion * 100) / 100}</strong><br>
     <strong>Plusvalía: $${Math.round(producto.plusvalia * 100) / 100}</strong><br>
      Total: $${Math.round(producto.total * 100) / 100}<br><br>
 
@@ -111,12 +111,24 @@ function limpiarResumen() {
 }
 
 function cargarProductos() {
+    // varable para la info de los productos
+    let productosDelInventario=0;
+
+    //variables para calcular el resumen de inventario
+    let gananciaTotal=0,inversionTotal=0,total=0,inventarioTotal=0;
+
     //obtenemos el array d eobjeto y lo parseamos
     let productos = JSON.parse(localStorage.getItem("productos")) || [];
-    let contenedorListaProductos = document.getElementById("contenedor-lista-productos");
-    contenedorListaProductos.innerHTML = "";// lo limpiamos
 
+    let contenedorListaProductos = document.getElementById("contenedor-lista-productos");
+    let contenedorResumenInventario = document.getElementById("resumen-inventario");
+    contenedorListaProductos.innerHTML = "";// lo limpiamos
+    contenedorResumenInventario.innerHTML = "";
+    
     productos.forEach((producto, index) => {
+        //Se incrementa el contador de productos en 1
+        ++productosDelInventario;
+    
         let div = document.createElement("div");
         div.className = "producto";
         div.dataset.id = index;
@@ -140,6 +152,42 @@ function cargarProductos() {
         contenedorListaProductos.appendChild(div);
     });
 
+    productos.forEach(producto =>{
+    inventarioTotal += producto.cantidad;
+    });
+
+    let p2 = document.createElement("p2");
+    let p3 = document.createElement("p3");
+    p2.innerHTML = `<br>Productos del Inventario: ${productosDelInventario}`; 
+    p3.innerHTML = `Inventario Total: ${inventarioTotal}`;
+    contenedorListaProductos.appendChild(p2);
+    contenedorListaProductos.appendChild(p3);
+
+       productos.forEach(producto =>{
+        inversionTotal += producto.inversion;
+    });
+
+    let pInversionTotal = document.createElement("p");
+    pInversionTotal.innerHTML = `Inversión total ($): ${inversionTotal.toFixed(2)}`;
+    contenedorResumenInventario.appendChild(pInversionTotal);
+
+    productos.forEach(producto =>{
+        gananciaTotal += producto.plusvalia;
+    });
+
+    let pgananciaTotal = document.createElement("p");
+    pgananciaTotal.innerHTML = `Ganancia total ($): ${gananciaTotal.toFixed(2)}`;
+    contenedorResumenInventario.appendChild(pgananciaTotal);
+
+
+ 
+
+    let pTotal = document.createElement("p");
+    pTotal.innerHTML= `Total ($): $${(inversionTotal+gananciaTotal).toFixed(2)} <br> <br><br>`;
+    contenedorResumenInventario.appendChild(pTotal);
+    
+
+        
 }
 
 function rellenarFormulario(producto) {
@@ -155,6 +203,7 @@ function rellenarFormulario(producto) {
     btnModificar.disabled = false;
     btnEliminar.disabled = false;
 }
+
 
 
 

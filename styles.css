@@ -91,22 +91,27 @@ main aside.derecha {
 
     border: 1px dotted black;
     text-align: center;
+    overflow-y: auto;
+}
+
+main aside.derecha h2{
+    margin-top: 1rem;
+    text-align: center;
 }
 
 main aside.derecha div#contenedor-lista-productos{
     display: flex;
     flex-direction: column;
-    /* align-items: flex-start; */
 
-    width: 70%;
+
+    width: 90%;
     text-align: left;
-    padding-left: 1rem;
-
+    margin-left: 1rem;
 }
 
 main aside.derecha div.producto{
     margin-top: 0.5rem;
-    border: 2px solid greenyellow;
+    border: 2px solid rgb(33, 104, 202);
 }
 main aside.derecha div.producto p{
     cursor: pointer;
