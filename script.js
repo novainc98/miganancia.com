@@ -207,7 +207,7 @@ btnCalcular.addEventListener("click", function () {
             precioVenta.placeholder = "..."
         }
 
-        alert("Eror ingresa la informaicón correcta")
+        alert("Error, ingresa la informaicón correcta")
         return;
     }
 
