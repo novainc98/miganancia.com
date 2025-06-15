@@ -71,6 +71,7 @@ function guardarProducto() {
 function crearProducto(nombreProducto, pzas, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, costoPaquete, paquetes, pzas_sueltas) {
     //Creamos el objeto
     product = {
+        id: Date.now(),
         nombreProducto: nombreProducto,
         pzas: pzas,
         cantidad: cantidad,
@@ -83,6 +84,7 @@ function crearProducto(nombreProducto, pzas, cantidad, inversion, plusvalia, tot
         paquetes: paquetes,
         pzas_sueltas: pzas_sueltas
     };
+
 }
 
 function mostrarResumen(producto) {
