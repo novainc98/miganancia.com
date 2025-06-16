@@ -1,5 +1,6 @@
 //variables globales
 let product = null;
+let idSeleccionado = null;
 
 // === Elementos DOM
 const elementosApuntador = document.querySelectorAll('.apuntador');
@@ -105,19 +106,27 @@ function mostrarResumen(producto) {
           Paquetes: ${producto.paquetes} <br>
      Pzas: ${producto.pzas_sueltas} <br>
     `
-
 }
 
 function limpiarResumen() {
     document.getElementById("resumen").innerHTML = "";
 }
 
-function cargarProductos() {
+function limpiarInputs() {
+    let matches = document.querySelectorAll("input");
+
+    matches.forEach(input => {
+        input.value = "";
+        input.placeholder = "";
+    });
+}
+
+function cargarInventario() {
     // varable para la info de los productos
-    let productosDelInventario=0;
+    let productosDelInventario = 0;
 
     //variables para calcular el resumen de inventario
-    let gananciaTotal=0,inversionTotal=0,total=0,inventarioTotal=0;
+    let gananciaTotal = 0, inversionTotal = 0, total = 0, inventarioTotal = 0;
 
     //obtenemos el array d eobjeto y lo parseamos
     let productos = JSON.parse(localStorage.getItem("productos")) || [];
@@ -126,18 +135,18 @@ function cargarProductos() {
     let contenedorResumenInventario = document.getElementById("resumen-inventario");
     contenedorListaProductos.innerHTML = "";// lo limpiamos
     contenedorResumenInventario.innerHTML = "";
-    
+
     productos.forEach((producto, index) => {
         //Se incrementa el contador de productos en 1
         ++productosDelInventario;
-    
+
         let div = document.createElement("div");
         div.className = "producto";
         div.dataset.id = index;
 
         let p = document.createElement("p");
         p.innerHTML = `
-            ${++index}. ${producto.nombreProducto}, <strong>${producto.cantidad} pzas</strong>, Plusvalia ($): ${producto.plusvalia}  
+            ${++index}. ${producto.nombreProducto}, <strong>${producto.cantidad} pzas</strong>, Plusvalia ($): ${(producto.plusvalia)}  
         `;
         div.appendChild(p);
 
@@ -154,18 +163,18 @@ function cargarProductos() {
         contenedorListaProductos.appendChild(div);
     });
 
-    productos.forEach(producto =>{
-    inventarioTotal += producto.cantidad;
+    productos.forEach(producto => {
+        inventarioTotal += producto.cantidad;
     });
 
     let p2 = document.createElement("p2");
     let p3 = document.createElement("p3");
-    p2.innerHTML = `<br>Productos del Inventario: ${productosDelInventario}`; 
+    p2.innerHTML = `<br>Productos del Inventario: ${productosDelInventario}`;
     p3.innerHTML = `Inventario Total: ${inventarioTotal}`;
     contenedorListaProductos.appendChild(p2);
     contenedorListaProductos.appendChild(p3);
 
-       productos.forEach(producto =>{
+    productos.forEach(producto => {
         inversionTotal += producto.inversion;
     });
 
@@ -173,7 +182,7 @@ function cargarProductos() {
     pInversionTotal.innerHTML = `Inversión total ($): ${inversionTotal.toFixed(2)}`;
     contenedorResumenInventario.appendChild(pInversionTotal);
 
-    productos.forEach(producto =>{
+    productos.forEach(producto => {
         gananciaTotal += producto.plusvalia;
     });
 
@@ -181,18 +190,22 @@ function cargarProductos() {
     pgananciaTotal.innerHTML = `Ganancia total ($): ${gananciaTotal.toFixed(2)}`;
     contenedorResumenInventario.appendChild(pgananciaTotal);
 
-
- 
-
     let pTotal = document.createElement("p");
-    pTotal.innerHTML= `Total ($): $${(inversionTotal+gananciaTotal).toFixed(2)} <br> <br><br>`;
+    pTotal.innerHTML = `Total ($): $${(inversionTotal + gananciaTotal).toFixed(2)} <br> <br><br>`;
     contenedorResumenInventario.appendChild(pTotal);
-    
+}
 
-        
+function restablecerBotones(){
+     btnCalcular.disabled = false;
+    btnGuardar.disabled = true;
+    btnModificar.disabled = true;
+    btnEliminar.disabled = true;
 }
 
 function rellenarFormulario(producto) {
+    //asignamos el id al idSeleccionado global
+    idSeleccionado = producto.id || null;
+
     document.getElementById("inp-nombre").value = producto.nombreProducto;
     document.getElementById("inp-pzas").value = producto.pzas;
     document.getElementById("inp-costo-paquete").value = producto.costoPaquete;
@@ -204,13 +217,53 @@ function rellenarFormulario(producto) {
     btnCalcular.disabled = true;
     btnModificar.disabled = false;
     btnEliminar.disabled = false;
+    console.log("rellenar formulario");
+    console.log(idSeleccionado);
+
+}
+
+function obtenerArrayProductos() {
+    return JSON.parse(localStorage.getItem("productos")) || [];
+}
+
+function eliminarProducto() {
+    if (idSeleccionado === null) {
+        alert("el prodcuto no tine id");
+        return;
+    }
+
+    let confirmacion = confirm(`¿Quieres eliminar?`);
+ 
+    if (!confirmacion) {
+        return;
+    }
+
+    let productos = obtenerArrayProductos();
+
+    let target = productos.findIndex(producto => producto.id === idSeleccionado);
+
+    if (target !== -1) {
+        productos.splice(target, 1);
+        localStorage.setItem("productos", JSON.stringify(productos));
+        cargarInventario();
+        limpiarResumen();
+        limpiarInputs();
+        alert(` eliminado correctamente`);
+
+
+    } else {
+        alert(`, no se elimino.`);
+    }
+
+    idSeleccionado = null;
+
+    restablecerBotones();
 }
 
 
 
-
 // === Eventos
-window.addEventListener('DOMContentLoaded', cargarProductos);
+window.addEventListener('DOMContentLoaded', cargarInventario);
 
 btnCalcular.addEventListener("click", function () {
     const nombreProducto = document.getElementById("inp-nombre").value;
@@ -283,7 +336,7 @@ btnCalcular.addEventListener("click", function () {
 
 btnGuardar.addEventListener("click", function () {
     guardarProducto();
-    cargarProductos();
+    cargarInventario();
     const inputs = document.querySelectorAll("input");
 
     inputs.forEach(input => {
@@ -294,6 +347,10 @@ btnGuardar.addEventListener("click", function () {
     limpiarResumen();
 
     btnGuardar.disabled = true;
+});
+
+btnEliminar.addEventListener("click", function () {
+    eliminarProducto();
 });
 
 // === funcionando jaja
