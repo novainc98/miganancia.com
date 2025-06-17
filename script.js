@@ -8,6 +8,7 @@ const btnCalcular = document.getElementById('btn-calcular');
 const btnGuardar = document.getElementById('btn-guardar');
 const btnModificar = document.getElementById("btn-modificar");
 const btnEliminar = document.getElementById("btn-eliminar");
+const btnNuevo = document.getElementById("nuevo");
 
 // Estado es los botones inical deshabilitado
 btnGuardar.disabled = true;
@@ -208,9 +209,6 @@ function rellenarFormulario(producto) {
     btnCalcular.disabled = true;
     btnModificar.disabled = false;
     btnEliminar.disabled = false;
-    console.log("rellenar formulario");
-    console.log(idSeleccionado);
-
 }
 
 function obtenerArrayProductos() {
@@ -420,6 +418,17 @@ btnModificar.addEventListener("click", function () {
 
     modificarProducto();
 });
+
+btnNuevo.addEventListener("click",function(){
+    limpiarInputs();
+    limpiarResumen();
+
+     // Quitar la clase 'seleccionado a todos los productos' de todos los productos
+    document.querySelectorAll(".producto p").forEach(p => p.classList.remove("seleccionado"));
+
+    idSeleccionado = null;    
+});
+
 
 // === funcionando jaja
 navegacionConEnter(elementosApuntador);

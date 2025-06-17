@@ -126,11 +126,11 @@ main aside.derecha div.producto p{
 
 main aside.derecha div.producto p:hover{
     cursor: pointer;
-    background-color: rgb(86, 148, 242);
+    background-color: rgb(98, 131, 222);
 }
 
 .seleccionado{
-    background-color: rgb(59, 180, 231);
+    background-color: rgb(110, 168, 255);
 }
 
 /* === footer === */
