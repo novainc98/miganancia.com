@@ -110,21 +110,27 @@ main aside.derecha div#contenedor-lista-productos{
 }
 
 main aside.derecha div.producto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
     margin-top: 0.5rem;
     border: 2px solid rgb(33, 104, 202);
     border-radius: 4px;
+
 }
 main aside.derecha div.producto p{
+
     cursor: pointer;
 }
 
 main aside.derecha div.producto p:hover{
     cursor: pointer;
-    background-color: cadetblue;
+    background-color: rgb(86, 148, 242);
 }
 
 .seleccionado{
-    background-color: rgb(73, 165, 168);
+    background-color: rgb(59, 180, 231);
 }
 
 /* === footer === */
