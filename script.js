@@ -269,7 +269,7 @@ function eliminarProducto() {
         return;
     }
 
-    let confirmacion = confirm(`¿Quieres eliminar?`);
+    let confirmacion = confirm("¿Estás seguro de eliminar este producto?");
 
     if (!confirmacion) {
         return;
@@ -285,9 +285,6 @@ function eliminarProducto() {
         cargarInventario();
         limpiarResumen();
         limpiarInputs();
-        alert(` eliminado correctamente`);
-
-
     } else {
         alert(`, no se elimino.`);
     }

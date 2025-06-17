@@ -112,6 +112,7 @@ main aside.derecha div#contenedor-lista-productos{
 main aside.derecha div.producto{
     margin-top: 0.5rem;
     border: 2px solid rgb(33, 104, 202);
+    border-radius: 4px;
 }
 main aside.derecha div.producto p{
     cursor: pointer;
