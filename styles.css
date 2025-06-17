@@ -207,3 +207,16 @@ footer.pie-pagina a {
     /* colores y apariencia */
     color: white;
 }
+
+footer.pie-pagina a {
+    /* Tipografia */
+    text-decoration: none;
+
+    /* colores y apariencia */
+    color: white;
+}
+
+footer.pie-pagina a:hover{
+    color: rgb(64, 96, 239);
+
+}
