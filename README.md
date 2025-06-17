@@ -1,5 +1,5 @@
 # 🧑🏻‍💻 Miganancia.com - novainc98
-![Miganancia.com](assets/imagen.png)
+![Miganancia.com](assets/img.png)
 
 Miganancia.com te ayuda a calcular fácilmente las ganancias de tu negocio a partir de un ticket de compra. Solo captura los datos y obtendrás un resumen claro de lo que invertiste y cuánto estás ganando.
 
