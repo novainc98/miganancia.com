@@ -138,7 +138,7 @@ function cargarInventario() {
 
         let p = document.createElement("p");
         p.innerHTML = `
-            ${++index}. ${producto.nombreProducto}, <strong>${producto.cantidad} pzas</strong>, Plusvalia ($): ${(producto.plusvalia)}  
+            ${++index}. ${producto.nombreProducto}, <strong>${producto.cantidad} pzas</strong>, Plusvalia ($): <strong>${producto.plusvalia.toFixed(2)}</strong>  
         `;
         div.appendChild(p);
 
@@ -427,6 +427,8 @@ btnNuevo.addEventListener("click",function(){
     document.querySelectorAll(".producto p").forEach(p => p.classList.remove("seleccionado"));
 
     idSeleccionado = null;    
+
+    restablecerBotones();
 });
 
 
