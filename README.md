@@ -3,8 +3,11 @@
 
 Miganancia.com te ayuda a calcular fácilmente las ganancias de tu negocio a partir de un ticket de compra. Solo captura los datos y obtendrás un resumen claro de lo que invertiste y cuánto estás ganando.
 
+Puedes crear, modificar y eliminar registros dentro de el.
+
 Este es un proyecto personal desarrollado como parte de mi aprendizaje en desarrollo web.
 
+Nota: los datos se guardan en tu navegador y puedes perderlos si borras el historial.
 
 ## 📁 Contenido
 
