@@ -16,9 +16,14 @@ Nota: los datos se guardan en tu navegador y puedes perderlos si borras el histo
 - `script.js` — Funcionalidad de la aplicación
 - `LICENSE.md` — Información detallada sobre los derechos de uso
 
-## 🚀 Propósito
+## 🚀 Motivación
 
-Este proyecto tiene fines educativos y personales. Está pensado como base para una página web funcional, adaptable y sencilla de mantener.
+Este proyecto nació del deseo de apoyar a los micronegocios ofreciéndoles una herramienta simple para calcular sus ganancias.  
+La idea es motivarlos al visualizar claramente cuánto están ganando con cada venta.
+
+## 🧾 Versión
+
+`miganancia.com` — versión 1.0
 
 ## 🛡️ Licencia
 
