@@ -14,16 +14,6 @@ btnGuardar.disabled = true;
 btnModificar.disabled = true;
 btnEliminar.disabled = true;
 
-/* const elementosApuntador = [
-    document.getElementById("inp-nombre"),
-    document.getElementById("inp-pzas"),
-    document.getElementById("inp-costo-paquete"),
-    document.getElementById("inp-precio-venta"),
-    document.getElementById("inp-cantidad"),
-    document.getElementById("btn-calcular")
-]; */
-
-
 // === Funciones
 function navegacionConEnter(listaDeElementos) {
     let contadorEnter = 0;
@@ -69,21 +59,22 @@ function guardarProducto() {
     localStorage.setItem("productos", JSON.stringify(productos))
 }
 
-function crearProducto(nombreProducto, pzas, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, costoPaquete, paquetes, pzas_sueltas) {
+function crearProducto(nombreProducto, costoPaquete, pzas, precioVenta, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, paquetes, pzas_sueltas) {
     //Creamos el objeto
     product = {
         id: Date.now(),
         nombreProducto: nombreProducto,
+        costoPaquete: costoPaquete,
         pzas: pzas,
+        precioVenta: precioVenta,
         cantidad: cantidad,
         inversion: inversion,
         plusvalia: plusvalia,
         total: total,
         costoUnitaro: costoUnitaro,
         gananciaUnitaria: gananciaUnitaria,
-        costoPaquete: costoPaquete,
         paquetes: paquetes,
-        pzas_sueltas: pzas_sueltas
+        pzas_sueltas: pzas_sueltas,
     };
 
 }
@@ -195,8 +186,8 @@ function cargarInventario() {
     contenedorResumenInventario.appendChild(pTotal);
 }
 
-function restablecerBotones(){
-     btnCalcular.disabled = false;
+function restablecerBotones() {
+    btnCalcular.disabled = false;
     btnGuardar.disabled = true;
     btnModificar.disabled = true;
     btnEliminar.disabled = true;
@@ -226,52 +217,7 @@ function obtenerArrayProductos() {
     return JSON.parse(localStorage.getItem("productos")) || [];
 }
 
-function eliminarProducto() {
-    if (idSeleccionado === null) {
-        alert("el prodcuto no tine id");
-        return;
-    }
-
-    let confirmacion = confirm(`¿Quieres eliminar?`);
- 
-    if (!confirmacion) {
-        return;
-    }
-
-    let productos = obtenerArrayProductos();
-
-    let target = productos.findIndex(producto => producto.id === idSeleccionado);
-
-    if (target !== -1) {
-        productos.splice(target, 1);
-        localStorage.setItem("productos", JSON.stringify(productos));
-        cargarInventario();
-        limpiarResumen();
-        limpiarInputs();
-        alert(` eliminado correctamente`);
-
-
-    } else {
-        alert(`, no se elimino.`);
-    }
-
-    idSeleccionado = null;
-
-    restablecerBotones();
-}
-
-
-
-// === Eventos
-window.addEventListener('DOMContentLoaded', cargarInventario);
-
-btnCalcular.addEventListener("click", function () {
-    const nombreProducto = document.getElementById("inp-nombre").value;
-    const costoPaquete = parseFloat(document.getElementById("inp-costo-paquete").value);
-    const pzas = parseFloat(document.getElementById("inp-pzas").value);
-    const cantidad = parseInt(document.getElementById("inp-cantidad").value)
-    const precioVenta = parseFloat(document.getElementById("inp-precio-venta").value);
-
+function validarInputs(nombreProducto, costoPaquete, pzas, cantidad, precioVenta) {
     const entradas = document.querySelectorAll("input");
     entradas.forEach(entrada => entrada.classList.remove("error"));
 
@@ -312,8 +258,86 @@ btnCalcular.addEventListener("click", function () {
         }
 
         alert("Error, ingresa la informaicón correcta")
+        return false;
+    }
+    return true;
+}
+
+function eliminarProducto() {
+    if (idSeleccionado === null) {
+        alert("el prodcuto no tine id");
         return;
     }
+
+    let confirmacion = confirm(`¿Quieres eliminar?`);
+
+    if (!confirmacion) {
+        return;
+    }
+
+    let productos = obtenerArrayProductos();
+
+    let target = productos.findIndex(producto => producto.id === idSeleccionado);
+
+    if (target !== -1) {
+        productos.splice(target, 1);
+        localStorage.setItem("productos", JSON.stringify(productos));
+        cargarInventario();
+        limpiarResumen();
+        limpiarInputs();
+        alert(` eliminado correctamente`);
+
+
+    } else {
+        alert(`, no se elimino.`);
+    }
+
+    idSeleccionado = null;
+
+    restablecerBotones();
+}
+
+function modificarProducto() {
+    let productos = JSON.parse(localStorage.getItem("productos"));
+
+
+    let confirmacion = confirm("¿Estás seguro de modificar este producto?");
+
+
+    if (!confirmacion) {
+        return;
+    }
+
+    let index = productos.findIndex(p => p.id === idSeleccionado);
+
+    if (index === -1) {
+        alert("Producto no encontrado en el inventario.");
+        return;
+    }
+
+    // Asignar el mismo ID al nuevo objeto actualizado
+    product.id = idSeleccionado;
+
+    // Reemplazar el objeto antiguo por el nuevo
+    productos[index] = product;
+
+    // Guardar en localStorage
+    localStorage.setItem("productos", JSON.stringify(productos));
+
+    // Recargar UI
+    cargarInventario();
+    limpiarResumen();
+    limpiarInputs();
+    restablecerBotones();
+    idSeleccionado = null;
+}
+
+function obtenerValoresInputs() {
+    const nombreProducto = document.getElementById("inp-nombre").value;
+    const costoPaquete = parseFloat(document.getElementById("inp-costo-paquete").value);
+    const pzas = parseFloat(document.getElementById("inp-pzas").value);
+    const cantidad = parseInt(document.getElementById("inp-cantidad").value)
+    const precioVenta = parseFloat(document.getElementById("inp-precio-venta").value);
 
     let costoUnitaro = costoPaquete / pzas;
     let gananciaUnitaria = precioVenta - costoUnitaro;
@@ -328,7 +352,37 @@ btnCalcular.addEventListener("click", function () {
     // calcula pzas sueltas
     pzas_sueltas = cantidad % pzas;
 
-    crearProducto(nombreProducto, pzas, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, costoPaquete, paquetes, pzas_sueltas);
+
+    return {
+        nombreProducto,
+        pzas,
+        cantidad,
+        inversion,
+        plusvalia,
+        total,
+        costoUnitaro,
+        gananciaUnitaria,
+        costoPaquete,
+        paquetes,
+        precioVenta,
+        pzas_sueltas
+    };
+}
+
+// === Eventos
+window.addEventListener('DOMContentLoaded', cargarInventario);
+
+btnCalcular.addEventListener("click", function () {
+    let {
+        nombreProducto, costoPaquete, pzas, precioVenta, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, paquetes, pzas_sueltas
+    } = obtenerValoresInputs();
+
+    let confirmacion = validarInputs(nombreProducto, costoPaquete, pzas, cantidad, precioVenta);
+    if (!confirmacion) {
+        return;
+    }
+
+    crearProducto(nombreProducto, costoPaquete, pzas, precioVenta, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, paquetes, pzas_sueltas);
     mostrarResumen(product);
 
     btnGuardar.disabled = false;
@@ -351,6 +405,23 @@ btnGuardar.addEventListener("click", function () {
 
 btnEliminar.addEventListener("click", function () {
     eliminarProducto();
+});
+
+btnModificar.addEventListener("click", function () {
+    let {
+       nombreProducto, costoPaquete, pzas, precioVenta, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, paquetes, pzas_sueltas
+    } = obtenerValoresInputs();
+
+    let confirmacion = validarInputs(nombreProducto, costoPaquete, pzas, cantidad, precioVenta);
+
+    if (!confirmacion) {
+        return;
+    }
+
+    crearProducto(
+       nombreProducto, costoPaquete, pzas, precioVenta, cantidad, inversion, plusvalia, total, costoUnitaro, gananciaUnitaria, paquetes, pzas_sueltas);
+
+    modificarProducto();
 });
 
 // === funcionando jaja
